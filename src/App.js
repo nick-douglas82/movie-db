@@ -1,9 +1,10 @@
 import React from "react";
-import App from "./views/App";
+import Routes from "./views/Routes";
 
-const World = () => {
+const App = () => {
   return (
-    <App></App>
-  );
+    <Routes></Routes>
+  )
 }
-export default World;
+
+export default App;
