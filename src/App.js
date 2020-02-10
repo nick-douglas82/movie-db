@@ -1,24 +1,43 @@
 import React from "react";
 import Routes from "./views/Routes";
+import axios from 'axios';
 
 import "./sass/main.scss";
 
-const App = () => {
+class App extends React.Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      error: null,
+      isLoaded: false,
+      genres: []
+    };
+  }
 
-  // useEffect(() => {
-  //   getGenres();
-  // }, []);
+  componentDidMount() {
+    axios.get("https://api.themoviedb.org/3/genre/movie/list?api_key=e0c577647a14eae09f07aa14fee7caeb&language=en-GB")
+    .then(
+      (result) => {
+        this.setState({
+          isLoaded: true,
+          genres: result.data.genres
+        });
+      },
 
-  // const getGenres = () => {
-  //   axios.get(`https://api.themoviedb.org/3/genre/movie/list?api_key=e0c577647a14eae09f07aa14fee7caeb&language=en-GB`)
-  //     .then(results => {
-  //       // results.genres;
-  //     })
-  // };
+      (error) => {
+        this.setState({
+          isLoaded: true,
+          error
+        });
+      }
+    )
+  }
 
-  return (
-    <Routes></Routes>
-  )
+  render() {
+    return (
+      <Routes></Routes>
+    )
+  }
 }
 
 export default App;
