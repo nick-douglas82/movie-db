@@ -1,12 +1,7 @@
 import React from "react";
 import Routes from "./views/Routes";
-import { Provider } from "react-redux";
-import { createStore } from "redux";
-import reducer from "./store/reducers";
 
 import "./sass/main.scss";
-
-const store = createStore(reducer);
 
 const App = () => {
 
@@ -22,9 +17,7 @@ const App = () => {
   // };
 
   return (
-    <Provider store={store}>
-      <Routes></Routes>
-    </Provider>
+    <Routes></Routes>
   )
 }
 
