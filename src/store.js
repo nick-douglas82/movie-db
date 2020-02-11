@@ -7,6 +7,12 @@ const initState = {
     isCompleted: false,
     error: null,
     data: null
+  },
+  genres: {
+    isLoading: true,
+    isCompleted: false,
+    error: null,
+    data: null
   }
 }
 

@@ -1,3 +1,14 @@
-export const getMovies = id => fetch(`https://api.themoviedb.org/3/movie/now_playing?api_key=e0c577647a14eae09f07aa14fee7caeb&language=en-GB&page=1&region=GB`);
+import {
+  API_ROOT,
+  API_KEY
+} from '../config';
 
-// export const getPostsBulk = () => fetch("https://jsonplaceholder.typicode.com/posts");
+import {
+  NOW_PLAYING,
+  LANGUAGE,
+  GENRE
+} from '../constants/api';
+
+export const getMovies = () => fetch(`${API_ROOT}/${NOW_PLAYING}?api_key=${API_KEY}&language=${LANGUAGE}&page=1&region=GB`);
+export const getGenres = () => fetch(`${API_ROOT}/${GENRE}?api_key=${API_KEY}&language=${LANGUAGE}`);
+

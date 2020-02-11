@@ -17,6 +17,7 @@ class Listing extends React.Component {
         {movies.data.map((movie, index) => (
           <MovieCard
             title={movie.title}
+            id={movie.id}
             genres={movie.genre_ids}
             rating={movie.vote_average}
             poster={movie.poster_path}
@@ -40,7 +41,7 @@ const mapStateToProps = state => {
 
 const mapDispatchToProps = dispatch => {
   return {
-    getMovies: getMoviesFunc(dispatch)
+    getMovies: getMoviesFunc(dispatch),
   }
 };
 

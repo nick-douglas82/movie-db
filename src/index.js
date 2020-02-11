@@ -4,8 +4,6 @@ import App from './App';
 import * as serviceWorker from './serviceWorker';
 import store from './store';
 import { Provider } from 'react-redux';
-// import { createStore } from 'redux';
-// import rootReducer from './reducers/rootReducer';
 
 console.log(`............${store.getState()}`);
 
