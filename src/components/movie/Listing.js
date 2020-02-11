@@ -1,48 +1,51 @@
 // import React, { useState, useEffect } from "react";
 import React from "react";
-import axios from 'axios';
-import MovieCard from '../movie/Card.js';
 import { connect } from 'react-redux';
-import { deleteMovie, storeMovies } from '../../actions/movieActions';
+import { getMoviesFunc } from '../../actions/movieActions';
+import MovieCard from '../movie/Card.js';
 
 class Listing extends React.Component {
   componentDidMount() {
-    axios.get("https://api.themoviedb.org/3/movie/now_playing?api_key=e0c577647a14eae09f07aa14fee7caeb&language=en-GB&page=1&region=GB")
-    .then(
-      (result) => {
-        this.props.storeMovies(result.data.results);
-      }
-    )
+    this.props.getMovies();
   }
 
   render() {
-    const { movies } = this.props;
-    return (
-      <div>
+    const { movies } = this.props.state;
+    if (movies.data) {
+      return (
         <div className="Listing">
-          {movies.map((movie, index) => (
-            <MovieCard
-              title={movie.title}
-              rating={movie.vote_average}
-              poster={movie.poster_path}
-              key={index}
-            ></MovieCard>
-          ))}
+        {movies.data.map((movie, index) => (
+          <MovieCard
+            title={movie.title}
+            genres={movie.genre_ids}
+            rating={movie.vote_average}
+            poster={movie.poster_path}
+            key={index}
+          ></MovieCard>
+        ))}
         </div>
-      </div>
-    );
+      )
+    }
+
+    return (
+      <div>Loading...</div>
+    )
   }
 }
-
-const mapStateToProps = (state) => {
+const mapStateToProps = state => {
   return {
-    movies: state.movies
-  }
+    state
+  };
 }
 
-const mapDispatchToProps = (dispatch) => ({
-  deleteMovie: (id) => dispatch( deleteMovie(id) ),
-  storeMovies: (movies) => dispatch( storeMovies(movies) )
-})
+const mapDispatchToProps = dispatch => {
+  return {
+    getMovies: getMoviesFunc(dispatch)
+  }
+};
 
-export default connect(mapStateToProps, mapDispatchToProps)(Listing);
+export default connect(
+  mapStateToProps,
+  mapDispatchToProps
+)(Listing);
+
