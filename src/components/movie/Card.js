@@ -18,7 +18,7 @@ class Card extends React.Component {
         <img src={`${API_IMAGE.small}/${this.props.poster}`} alt="" />
         <div className="card__genres">
 					<ul className="card__genres-list">
-            {isComplete && this.props.genres.map((id, index) => {
+            {isComplete && this.props.genres.map(id => {
               const item = genresAll.filter(genre => genre.id === id);
               return ( (item.length) ? <li key={id}>{isComplete && item.shift().name}</li> : '' )
             })}
