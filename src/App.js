@@ -1,6 +1,6 @@
 import React from "react";
-import Routes from "./views/Routes";
 import { connect } from 'react-redux';
+import routes from './routes';
 import { getGenresFunc } from './actions/movieActions';
 import "./sass/main.scss";
 
@@ -11,7 +11,9 @@ class App extends React.Component {
 
   render() {
     return (
-      <Routes></Routes>
+      <div className="wrapper">
+        {routes}
+      </div>
     )
   }
 }
@@ -22,14 +24,15 @@ const mapStateToProps = state => {
   };
 }
 
-
 const mapDispatchToProps = dispatch => {
   return {
     getGenres: getGenresFunc(dispatch)
   }
 };
 
-export default connect(
-  mapStateToProps,
-  mapDispatchToProps
-)(App);
+// export default connect(
+//   mapStateToProps,
+//   mapDispatchToProps
+// )(App);
+
+export default connect(mapStateToProps, mapDispatchToProps)(App);
