@@ -1,16 +1,12 @@
 import React from 'react';
-// import Hero from '../components/heros/Hero';
-import MovieListing from '../components/movie/Listing'
+import MovieListing from '../components/movie/Listing';
+import MovieFilters from '../components/movie/Filters';
 
 const Home = () => {
   return (
-    <div>
-      {/* <Hero></Hero> */}
-      <main>
-        <div className="wrapper">
-          <MovieListing></MovieListing>
-        </div>
-      </main>
+    <div className="wrapper">
+      <MovieFilters></MovieFilters>
+      <MovieListing></MovieListing>
     </div>
   );
 }

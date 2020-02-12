@@ -1,10 +1,13 @@
-import React from "react";
+import React, { Component } from "react";
 import { connect } from 'react-redux';
-import routes from './routes';
+import { withRouter } from "react-router-dom";
 import { getGenresFunc } from './actions/movieActions';
+import Header from './components/Header';
+import routes from './routes';
+
 import "./sass/main.scss";
 
-class App extends React.Component {
+class App extends Component {
   componentDidMount() {
     this.props.getGenres();
   }
@@ -12,7 +15,10 @@ class App extends React.Component {
   render() {
     return (
       <div className="wrapper">
-        {routes}
+        <Header></Header>
+        <main>
+          {routes}
+        </main>
       </div>
     )
   }
@@ -30,9 +36,4 @@ const mapDispatchToProps = dispatch => {
   }
 };
 
-// export default connect(
-//   mapStateToProps,
-//   mapDispatchToProps
-// )(App);
-
-export default connect(mapStateToProps, mapDispatchToProps)(App);
+export default withRouter(connect(mapStateToProps, mapDispatchToProps)(App));
