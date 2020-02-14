@@ -4,7 +4,8 @@ import {
   GET_MOVIES_FAIL,
   GET_GENRES_REQUEST,
   GET_GENRES_SUCCESS,
-  GET_GENRES_FAIL
+  GET_GENRES_FAIL,
+  CHANGE_MOVIES_FILTER
 } from "../constants/index";
 
 const reducer = (state, action) => {
@@ -69,7 +70,14 @@ const reducer = (state, action) => {
             error: action.payload,
             data: false
           }
-      }
+        }
+      case CHANGE_MOVIES_FILTER:
+        return {
+          ...state,
+          filter: {
+            type: action.filter
+          }
+        }
     default: return state;
   }
 }

@@ -8,6 +8,9 @@ const initState = {
     error: null,
     data: null
   },
+  filter: {
+    type: 'in_theatres'
+  },
   genres: {
     isLoading: true,
     isCompleted: false,

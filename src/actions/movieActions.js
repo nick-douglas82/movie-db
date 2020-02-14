@@ -4,7 +4,8 @@ import {
   GET_MOVIES_FAIL,
   GET_GENRES_REQUEST,
   GET_GENRES_SUCCESS,
-  GET_GENRES_FAIL
+  GET_GENRES_FAIL,
+  CHANGE_MOVIES_FILTER
 } from "../constants/index";
 
 import {
@@ -37,6 +38,14 @@ const getGenresList = async dispatch => {
 export const getMoviesFunc = dispatch => {
   return () => getMovieList(dispatch);
 }
+
 export const getGenresFunc = dispatch => {
   return () => getGenresList(dispatch);
 }
+
+export const changeFilterFunc = (filter) => {
+  return {
+    type: CHANGE_MOVIES_FILTER,
+    filter
+  }
+};
