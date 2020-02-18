@@ -1,5 +1,5 @@
 import { createStore } from 'redux'
-import reducer from './reducers/rootReducer';
+import rootReducer from './reducers/rootReducer';
 
 const initState = {
   movies: {
@@ -19,6 +19,6 @@ const initState = {
   }
 }
 
-const store = createStore(reducer, initState, window.__REDUX_DEVTOOLS_EXTENSION__ && window.__REDUX_DEVTOOLS_EXTENSION__());
+const store = createStore(rootReducer, initState, window.__REDUX_DEVTOOLS_EXTENSION__ && window.__REDUX_DEVTOOLS_EXTENSION__());
 
 export default store;

@@ -2,9 +2,10 @@ import React, { Component } from "react";
 import { connect } from 'react-redux';
 import { withRouter } from "react-router-dom";
 import { getGenresFunc } from './actions/movieActions';
-import Header from './components/Header';
+// import Header from './components/Header';
 import routes from './routes';
 
+import "normalize.css/normalize.css";
 import "./sass/main.scss";
 
 class App extends Component {
@@ -14,12 +15,9 @@ class App extends Component {
 
   render() {
     return (
-      <div className="wrapper">
-        <Header></Header>
-        <main>
-          {routes}
-        </main>
-      </div>
+      <main>
+        {routes}
+      </main>
     )
   }
 }

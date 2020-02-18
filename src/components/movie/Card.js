@@ -9,20 +9,22 @@ class Card extends React.Component {
     const { genresAll, isComplete } = this.props;
     return (
       <div className="card">
-				<Link to={`/movie/${this.props.id}`} className="movie-title">
-          <h3>{this.props.title}</h3>
-				</Link>
-        <div className="card__rating">
-          {this.props.rating}
-        </div>
-        <img src={`${API_IMAGE.small}/${this.props.poster}`} alt="" />
-        <div className="card__genres">
-					<ul className="card__genres-list">
-            {isComplete && this.props.genres.map(id => {
-              const item = genresAll.filter(genre => genre.id === id);
-              return ( (item.length) ? <li key={id}>{isComplete && item.shift().name}</li> : '' )
-            })}
-          </ul>
+        <img src={`${API_IMAGE.medium}/${this.props.poster}`} alt="" />
+        <div className="card__content">
+          <Link to={`/movie/${this.props.id}`} className="card__title">
+            <h3>{this.props.title}</h3>
+          </Link>
+          <div className="card__genres">
+            <ul className="reset-list card__genres-list">
+              {isComplete && this.props.genres.map(id => {
+                const item = genresAll.filter(genre => genre.id === id);
+                return ( (item.length) ? <li key={id}>{isComplete && item.shift().name},&nbsp;</li> : '' )
+              })}
+            </ul>
+          </div>
+          <div className="card__rating">
+            {this.props.rating}
+          </div>
         </div>
       </div>
     );

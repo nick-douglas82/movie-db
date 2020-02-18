@@ -7,8 +7,6 @@ import * as serviceWorker from './serviceWorker';
 import App from './App';
 import store from './store';
 
-console.log(`............${store.getState()}`);
-
 render(
   <Provider store={store}>
     <Router>

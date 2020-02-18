@@ -13,17 +13,19 @@ class Listing extends React.Component {
     const { movies } = this.props.state;
     if (movies.data) {
       return (
-        <div className="Listing">
-        {movies.data.map((movie, index) => (
-          <MovieCard
-            title={movie.title}
-            id={movie.id}
-            genres={movie.genre_ids}
-            rating={movie.vote_average}
-            poster={movie.poster_path}
-            key={index}
-          ></MovieCard>
-        ))}
+        <div className="wrapper">
+          <div className="listing">
+          {movies.data.map((movie, index) => (
+            <MovieCard
+              title={movie.title}
+              id={movie.id}
+              genres={movie.genre_ids}
+              rating={movie.vote_average}
+              poster={movie.poster_path}
+              key={index}
+            ></MovieCard>
+          ))}
+          </div>
         </div>
       )
     }

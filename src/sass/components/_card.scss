@@ -1,0 +1,64 @@
+.card {
+  background-color: #fff;
+  border-radius: 3px;
+  box-shadow: 4px 4px 10px -3px rgba(0,0,0,0.16);
+  cursor: pointer;
+  display: flex;
+  flex-direction: column;
+  flex: 1 1 calc(33.333% - 24px);
+  margin: 0 12px 25px;
+  max-width: calc(33.333% - 24px);
+
+  &:hover {
+    img {
+      opacity: 1;
+      transition: opacity ease-in 250ms;
+    }
+  }
+
+  &__content {
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+    padding: 30px;
+  }
+
+  &__title {
+    font-size: 18px;
+    letter-spacing: 0.07em;
+    text-transform: uppercase;
+
+    h3 {
+      margin: 0;
+    }
+  }
+
+  &__rating {
+    font-size: 26px;
+    margin-top: auto;
+    letter-spacing: 0.07em;
+  }
+
+  &__genres {
+    font-weight: 500;
+
+    &-list {
+      color: $yellow;
+      display: flex;
+      flex-wrap: wrap;
+    }
+  }
+
+  a {
+    color: inherit;
+    text-decoration: none;
+  }
+
+  img {
+    align-self: flex-start;
+    flex-shrink: 0;
+    opacity: .8;
+    transition: opacity ease-in 250ms;
+    width: 100%;
+  }
+}

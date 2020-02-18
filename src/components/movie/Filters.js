@@ -37,18 +37,19 @@ class Filters extends Component {
 		];
 
 		return (
-			<div className="filters">
-				<ul>
-					{filters.map(item => (
-            <li
-              key={item.slug}
-              className={item.slug === filter.type  ? 'active' : ''}
-              onClick={()=>{this.handleChangeFilter(item.slug)}}
-            >
-              {item.title}
-            </li>
-					))}
-				</ul>
+			<div className="wrapper filters">
+
+					<ul className="reset-list filters__list">
+						{filters.map(item => (
+							<li
+								key={item.slug}
+								className={item.slug === filter.type  ? 'active' : ''}
+								onClick={()=>{this.handleChangeFilter(item.slug)}}
+							>
+								{item.title}
+							</li>
+						))}
+					</ul>
 			</div>
 		)
   }
