@@ -1,10 +1,12 @@
 import React from 'react';
+import Hero from '../components/heros/Hero';
 import MovieListing from '../components/movie/Listing';
 import MovieFilters from '../components/movie/Filters';
 
 const Home = () => {
   return (
-    <div className="wrapper">
+    <div>
+      <Hero></Hero>
       <MovieFilters></MovieFilters>
       <MovieListing></MovieListing>
     </div>
