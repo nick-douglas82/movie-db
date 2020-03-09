@@ -5,7 +5,7 @@ import { getGenresFunc } from './actions/movieActions';
 // import Header from './components/Header';
 import routes from './routes';
 
-import "normalize.css/normalize.css";
+// import "~normalize.css/normalize.css";
 import "./sass/main.scss";
 
 class App extends Component {

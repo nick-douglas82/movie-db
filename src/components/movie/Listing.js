@@ -1,21 +1,19 @@
-// import React, { useState, useEffect } from "react";
 import React from "react";
-// import { connect } from 'react-redux';
-// import { getMoviesFunc } from '../../actions/movieActions';
+import { connect } from 'react-redux';
+import { getMovies } from '../../store/actions/movies';
 import MovieCard from '../movie/Card.js';
 
 class Listing extends React.Component {
-  // componentDidMount() {
-  //   this.props.getMovies();
-  // }
+  componentDidMount() {
+    this.props.getMovies();
+  }
 
   render() {
-    const { movies } = this.props.state;
-    if (movies.data) {
+    if (this.props.movies) {
       return (
         <div className="wrapper">
           <div className="listing">
-          {movies.data.map((movie, index) => (
+          {this.props.movies.map((movie, index) => (
             <MovieCard
               title={movie.title}
               id={movie.id}
@@ -35,22 +33,12 @@ class Listing extends React.Component {
     )
   }
 }
-// const mapStateToProps = state => {
-//   return {
-//     state
-//   };
-// }
 
-// const mapDispatchToProps = dispatch => {
-//   return {
-//     getMovies: getMoviesFunc(dispatch),
-//   }
-// };
+const mapStateToProps = (state, ownProps) => ({ movies: state.movies });
+const mapDispatchToProps = { getMovies };
 
-// export default connect(
-//   mapStateToProps,
-//   mapDispatchToProps
-// )(Listing);
-
-export default Listing;
+export default connect(
+  mapStateToProps,
+  mapDispatchToProps
+)(Listing);
 
