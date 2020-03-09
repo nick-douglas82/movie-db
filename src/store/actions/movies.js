@@ -20,21 +20,18 @@ export const getMovies = () => async dispatch => {
         url = `${API_ROOT}/${NOW_PLAYING}?api_key=${API_KEY}&language=${LANGUAGE}&page=1&region=GB`;
         response = await fetch(url)
         movieResponse = await response.json();
-        console.log(movieResponse.results);
         dispatch(storeTheatreMovies(movieResponse));
         break;
       case 'comming_soon':
         url = `${API_ROOT}/${UPCOMING}?api_key=${API_KEY}&language=${LANGUAGE}&page=1&region=GB`;
         response = await fetch(url)
         movieResponse = await response.json();
-        console.log(movieResponse.results);
         dispatch(storeComingSoonMovies(movieResponse));
         break;
       case 'chart':
         url = `${API_ROOT}/${CHART}?api_key=${API_KEY}&language=${LANGUAGE}&page=1&region=GB`;
         response = await fetch(url)
         movieResponse = await response.json();
-        console.log(movieResponse.results);
         dispatch(storeChartMovies(movieResponse));
         break;
       default:
@@ -46,7 +43,7 @@ export const getMovies = () => async dispatch => {
 export const storeTheatreMovies = (movies) => {
   return {
     type: GET_MOVIES_THEATRE_REQUEST,
-    payload: movies
+    payload: movies.results
   };
 };
 

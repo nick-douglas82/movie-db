@@ -9,11 +9,11 @@ class Listing extends React.Component {
   }
 
   render() {
-    if (this.props.movies) {
+    if (this.props.movies.theatres) {
       return (
         <div className="wrapper">
           <div className="listing">
-          {this.props.movies.map((movie, index) => (
+          {this.props.movies.theatres.map((movie, index) => (
             <MovieCard
               title={movie.title}
               id={movie.id}
@@ -34,7 +34,7 @@ class Listing extends React.Component {
   }
 }
 
-const mapStateToProps = (state, ownProps) => ({ movies: state.movies });
+const mapStateToProps = (state, ownProps) => ({ movies: state.moviesReducer.movies });
 const mapDispatchToProps = { getMovies };
 
 export default connect(

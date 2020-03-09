@@ -19,7 +19,7 @@ const reducer = ( state = initState, action ) => {
         ...state,
         movies: {
           ...state.movies,
-          theatre: action.payload
+          theatres: action.payload
         }
       }
     case GET_MOVIES_COMINGSOON_REQUEST:
