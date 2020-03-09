@@ -21,21 +21,21 @@ export const getMovies = () => async dispatch => {
         response = await fetch(url)
         movieResponse = await response.json();
         console.log(movieResponse.results);
-        // dispatch(storeTheatreMovies(movieResponse));
+        dispatch(storeTheatreMovies(movieResponse));
         break;
       case 'comming_soon':
         url = `${API_ROOT}/${UPCOMING}?api_key=${API_KEY}&language=${LANGUAGE}&page=1&region=GB`;
         response = await fetch(url)
         movieResponse = await response.json();
         console.log(movieResponse.results);
-        // dispatch(storeComingSoonMovies(movieResponse));
+        dispatch(storeComingSoonMovies(movieResponse));
         break;
       case 'chart':
         url = `${API_ROOT}/${CHART}?api_key=${API_KEY}&language=${LANGUAGE}&page=1&region=GB`;
         response = await fetch(url)
         movieResponse = await response.json();
         console.log(movieResponse.results);
-        // dispatch(storeChartMovies(movieResponse));
+        dispatch(storeChartMovies(movieResponse));
         break;
       default:
         // dispatch(someErroredDispatch(movieResponse));
