@@ -2,16 +2,16 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 // import { bindActionCreators } from 'redux';
 // import { changeFilterFunc } from '../../actions/movieActions';
-import { changeFilterFunc } from '../../actions/movieActions';
+import { setFilter } from '../../store/actions/filters';
 
 
 class Filters extends Component {
-  handleChangeFilter = (filter)=>{
-    this.props.changeFilter(filter);
+  handleChangeFilter = (filter) => {
+		this.props.onSetFilter(filter)
   }
 
   render() {
-    const { filter } = this.props;
+		const { type } = this.props.filter.filter;
 
 		const filters = [
 			{
@@ -43,8 +43,8 @@ class Filters extends Component {
 						{filters.map(item => (
 							<li
 								key={item.slug}
-								className={item.slug === filter.type  ? 'active' : ''}
-								onClick={()=>{this.handleChangeFilter(item.slug)}}
+								className={ item.slug === type  ? 'active' : '' }
+								onClick={ () => this.handleChangeFilter(item.slug) }
 							>
 								{item.title}
 							</li>
@@ -55,17 +55,13 @@ class Filters extends Component {
   }
 }
 
-const mapStateToProps = (state) => {
-	return {
-		filter: state.filter
-	};
-};
+const mapStateToProps = (state, ownProps) => ({ filter: state.filtersReducer });
 
-const mapDispatchToProps = (dispatch)=>{
-  return{
-    changeFilter: (filter) => {dispatch(changeFilterFunc(filter))},
-  }
-}
+const mapDispatchToProps = dispatch => {
+	return {
+			onSetFilter: (filter) => dispatch(setFilter(filter)),
+	}
+};
 
 export default connect(
   mapStateToProps,

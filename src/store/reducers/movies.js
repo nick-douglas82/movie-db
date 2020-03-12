@@ -8,18 +8,30 @@ const initState = {
   movies: {
     theatres: null,
     comingsoon: null,
-    chart: null
+    chart: null,
+    data: null
   }
 }
 
 const reducer = ( state = initState, action ) => {
   switch ( action.type ) {
     case GET_MOVIES_THEATRE_REQUEST:
+      if (state.movies.theatres !== null) {
+        const theatres = state.movies.theatres;
+        return {
+          ...state,
+          movies: {
+            theatres: theatres
+          }
+        }
+      }
+
       return {
         ...state,
         movies: {
           ...state.movies,
-          theatres: action.payload
+          theatres: action.payload,
+          data: action.payload
         }
       }
     case GET_MOVIES_COMINGSOON_REQUEST:
@@ -27,7 +39,8 @@ const reducer = ( state = initState, action ) => {
         ...state,
         movies: {
           ...state.movies,
-          comingsoon: action.payload
+          comingsoon: action.payload,
+          data: action.payload
         }
       }
     case GET_MOVIES_CHART_REQUEST:
@@ -35,7 +48,8 @@ const reducer = ( state = initState, action ) => {
         ...state,
         movies: {
           ...state.movies,
-          chart: action.payload
+          chart: action.payload,
+          data: action.payload
         }
       }
     default:

@@ -13,7 +13,7 @@ class Listing extends React.Component {
       return (
         <div className="wrapper">
           <div className="listing">
-          {this.props.movies.theatres.map((movie, index) => (
+          {this.props.movies.data.map((movie, index) => (
             <MovieCard
               title={movie.title}
               id={movie.id}
