@@ -24,23 +24,23 @@ class Filters extends Component {
 		const filters = [
 			{
 				title: 'In the Cinema',
-				slug: 'in_theatres',
+				slug: 'IN_THEATRES',
 			},
 			{
 				title: 'Coming Soon',
-				slug: 'comming_soon'
+				slug: 'COMING_SOON'
 			},
 			{
 				title: 'Charts',
-				slug: 'chart',
+				slug: 'CHART',
       },
 			{
 				title: 'TV Series',
-				slug: 'tv',
+				slug: 'TV',
 			},
 			{
 				title: 'Trailers',
-				slug: 'trailers',
+				slug: 'TRAILERS',
 			}
 		];
 

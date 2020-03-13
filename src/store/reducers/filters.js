@@ -4,7 +4,7 @@ import {
 
 const initState = {
   filter: {
-    type: 'in_theatres'
+    type: 'IN_THEATRES'
   },
 }
 

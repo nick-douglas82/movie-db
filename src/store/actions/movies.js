@@ -7,7 +7,7 @@ import {
 } from '../../constants/index';
 
 import { API_ROOT, API_KEY } from '../../config';
-import { NOW_PLAYING, UPCOMING, CHART, LANGUAGE } from '../../constants/api';
+import { IN_THEATRES, COMING_SOON, CHART, LANGUAGE } from '../../constants/api';
 
 export const getMovies = () => async dispatch => {
   let url = '';
@@ -16,9 +16,9 @@ export const getMovies = () => async dispatch => {
   let movieResults = null;
 
   switch (store.getState().filtersReducer.filter.type) {
-    case 'in_theatres':
+    case 'IN_THEATRES':
       if (store.getState().moviesReducer.movies.theatres === null) {
-        url = `${API_ROOT}/${NOW_PLAYING}?api_key=${API_KEY}&language=${LANGUAGE}&page=1&region=GB`;
+        url = `${API_ROOT}/${IN_THEATRES}?api_key=${API_KEY}&language=${LANGUAGE}&page=1&region=GB`;
         response = await fetch(url)
         movieResponse = await response.json();
         movieResults = movieResponse.results;
@@ -28,9 +28,9 @@ export const getMovies = () => async dispatch => {
       }
       break;
 
-    case 'comming_soon':
+    case 'COMING_SOON':
       if (store.getState().moviesReducer.movies.comingsoon === null) {
-        url = `${API_ROOT}/${UPCOMING}?api_key=${API_KEY}&language=${LANGUAGE}&page=1&region=GB`;
+        url = `${API_ROOT}/${COMING_SOON}?api_key=${API_KEY}&language=${LANGUAGE}&page=1&region=GB`;
         response = await fetch(url)
         movieResponse = await response.json();
         movieResults = movieResponse.results;
@@ -40,7 +40,7 @@ export const getMovies = () => async dispatch => {
       }
       break;
 
-    case 'chart':
+    case 'CHART':
       if (store.getState().moviesReducer.movies.comingsoon === null) {
         url = `${API_ROOT}/${CHART}?api_key=${API_KEY}&language=${LANGUAGE}&page=1&region=GB`;
         response = await fetch(url)
