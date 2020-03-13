@@ -2,7 +2,7 @@ import React, { Component } from "react";
 import { connect } from 'react-redux';
 import { withRouter } from "react-router-dom";
 import { getGenresFunc } from './actions/movieActions';
-// import Header from './components/Header';
+import Header from './components/Header';
 import routes from './routes';
 
 // import "~normalize.css/normalize.css";
@@ -16,7 +16,8 @@ class App extends Component {
   render() {
     return (
       <main>
-        {routes}
+        <Header />
+        { routes }
       </main>
     )
   }
