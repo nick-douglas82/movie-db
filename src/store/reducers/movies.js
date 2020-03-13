@@ -16,16 +16,6 @@ const initState = {
 const reducer = ( state = initState, action ) => {
   switch ( action.type ) {
     case GET_MOVIES_THEATRE_REQUEST:
-      if (state.movies.theatres !== null) {
-        const theatres = state.movies.theatres;
-        return {
-          ...state,
-          movies: {
-            theatres: theatres
-          }
-        }
-      }
-
       return {
         ...state,
         movies: {

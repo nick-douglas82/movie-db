@@ -9,7 +9,7 @@ class Listing extends React.Component {
   }
 
   render() {
-    if (this.props.movies.theatres) {
+    if (this.props.movies.data) {
       return (
         <div className="wrapper">
           <div className="listing">
