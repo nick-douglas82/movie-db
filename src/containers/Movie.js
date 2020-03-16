@@ -2,17 +2,22 @@ import React from 'react';
 import { NavLink } from "react-router-dom";
 import { connect } from 'react-redux';
 import Hero from '../components/heros/Hero';
+import { getMovies } from '../store/actions/movies';
+import { getPageName } from '../helpers/helpers';
 
 class Movie extends React.Component {
   componentDidMount() {
-    console.log('yes');
-  }
-  componentDidUpdate() {
-    console.log(this.props.state);
+    this.fetchMovies(this.props.location.pathname);
   }
 
-  fetchMovies = () => {
+  componentWillReceiveProps(nextProps) {
+    if (nextProps.location !== this.props.location) {
+      this.fetchMovies(nextProps.location.pathname);
+    }
+  }
 
+  fetchMovies = (path) => {
+    this.props.getMovies(getPageName(path));
   }
 
   render() {
@@ -44,6 +49,9 @@ class Movie extends React.Component {
 }
 const mapStateToProps = (state, ownProps) => ({ state: state });
 
+const mapDispatchToProps = { getMovies };
+
 export default connect(
-  mapStateToProps
+  mapStateToProps,
+  mapDispatchToProps
 )(Movie);
