@@ -4,6 +4,7 @@ import { connect } from 'react-redux';
 import Hero from '../components/heros/Hero';
 import { getMovies } from '../store/actions/movies';
 import { getPageName } from '../helpers/helpers';
+import MovieListing from '../components/movie/Listing';
 
 class Movie extends React.Component {
   componentDidMount() {
@@ -43,6 +44,7 @@ class Movie extends React.Component {
             </li>
           </ul>
         </nav>
+        <MovieListing></MovieListing>
       </div>
     );
   }

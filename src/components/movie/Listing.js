@@ -1,13 +1,8 @@
 import React from "react";
 import { connect } from 'react-redux';
-import { getMovies } from '../../store/actions/movies';
 import MovieCard from '../movie/Card.js';
 
 class Listing extends React.Component {
-  componentDidMount() {
-    this.props.getMovies();
-  }
-
   render() {
     if (this.props.movies.data) {
       return (
@@ -35,10 +30,8 @@ class Listing extends React.Component {
 }
 
 const mapStateToProps = (state, ownProps) => ({ movies: state.moviesReducer.movies });
-const mapDispatchToProps = { getMovies };
 
 export default connect(
-  mapStateToProps,
-  mapDispatchToProps
+  mapStateToProps
 )(Listing);
 
