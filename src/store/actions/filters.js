@@ -2,9 +2,8 @@ import {
   CHANGE_MOVIES_FILTER
 } from '../../constants/index';
 
-export const setFilter = (filter) => {
+export const updateFilter = () => {
   return {
-    type: CHANGE_MOVIES_FILTER,
-    payload: filter
+    type: CHANGE_MOVIES_FILTER
   };
 };

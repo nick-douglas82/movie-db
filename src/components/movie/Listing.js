@@ -4,11 +4,11 @@ import MovieCard from '../movie/Card.js';
 
 class Listing extends React.Component {
   render() {
-    if (this.props.movies.theatres) {
+    if (this.props.movies.data) {
       return (
         <div className="wrapper">
           <div className="listing">
-          {this.props.movies.data.map((movie, index) => (
+          {this.props.movies.theatres.map((movie, index) => (
             <MovieCard
               title={movie.title}
               id={movie.id}

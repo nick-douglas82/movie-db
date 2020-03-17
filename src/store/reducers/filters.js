@@ -14,7 +14,7 @@ const reducer = ( state = initState, action ) => {
       return {
         ...state,
         filter: {
-          type: action.payload
+          type: action.filter
         }
       }
     default:
