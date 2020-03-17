@@ -4,7 +4,7 @@ import MovieCard from '../movie/Card.js';
 
 class Listing extends React.Component {
   render() {
-    if (this.props.movies.data) {
+    if (this.props.movies.theatres) {
       return (
         <div className="wrapper">
           <div className="listing">

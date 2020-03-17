@@ -1,25 +1,17 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
+// import { bindActionCreators } from 'redux';
+// import { changeFilterFunc } from '../../actions/movieActions';
 import { setFilter } from '../../store/actions/filters';
-import { getMovies } from '../../store/actions/movies';
 
 
 class Filters extends Component {
   handleChangeFilter = (filter) => {
-		this.props.onSetFilter(filter);
-	}
-
-	componentDidUpdate(prevProps, prevState, snapshot) {
-		const prevFilter = prevProps.filter.type;
-		const stateFilter = this.props.filter.type;
-
-		if (prevFilter !== stateFilter) {
-			this.props.onUpdateMovies();
-		}
-	}
+		this.props.onSetFilter(filter)
+  }
 
   render() {
-		const { type } = this.props.filter;
+		const { type } = this.props.filter.filter;
 
 		const filters = [
 			{
@@ -63,12 +55,11 @@ class Filters extends Component {
   }
 }
 
-const mapStateToProps = (state, ownProps) => ({ filter: state.filtersReducer.filter });
+const mapStateToProps = (state, ownProps) => ({ filter: state.filtersReducer });
 
 const mapDispatchToProps = dispatch => {
 	return {
 			onSetFilter: (filter) => dispatch(setFilter(filter)),
-			onUpdateMovies: () => dispatch(getMovies())
 	}
 };
 
