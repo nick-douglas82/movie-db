@@ -1,16 +1,29 @@
 import React from 'react';
-// import Hero from '../components/heros/Hero';
-// import MovieListing from '../components/movie/Listing';
-// import MovieFilters from '../components/movie/Filters';
+import { connect } from 'react-redux';
+import { getMovies } from '../store/actions/movies';
+import { getTv } from '../store/actions/tv';
 
-const Home = () => {
-  return (
-    <div>
-      Homepage
-      {/* <Hero></Hero> */}
-      {/* <MovieFilters></MovieFilters> */}
-      {/* <MovieListing></MovieListing> */}
-    </div>
-  );
+class Home extends React.Component {
+  componentDidMount() {
+    this.props.getMovies();
+    this.props.getTv();
+  }
+
+  render() {
+    return (
+      <div>
+        Homepage
+        {/* <Hero></Hero> */}
+        {/* <MovieFilters></MovieFilters> */}
+        {/* <MovieListing></MovieListing> */}
+      </div>
+    );
+  }
 }
-export default Home;
+
+const mapDispatchToProps = { getMovies, getTv };
+
+export default connect(
+  null,
+  mapDispatchToProps
+)(Home);

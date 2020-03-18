@@ -1,8 +1,9 @@
 ### HomeScreen
-1. Initial load loads page 1 or movies and tv combines and sort by release date
+1. Initial load loads page 1 of movies (now playing) and tv combines and sort by release date
 2. Sort filter to change: Release Date, Title (alphabetical), Rating
 
 ### Nav
+0. Logo - homepage - combination of now playing movies and tv page 1
 1. Now Playing (movies) - page 1
 2. Upcoming (movies) - page 1
 3. Trending (movies + TV) - page 1
