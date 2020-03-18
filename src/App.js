@@ -15,10 +15,12 @@ class App extends Component {
 
   render() {
     return (
-      <main>
+      <div className="site-wrapper">
         <Header />
-        { routes }
-      </main>
+        <main>
+          { routes }
+        </main>
+      </div>
     )
   }
 }
