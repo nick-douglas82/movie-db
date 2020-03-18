@@ -24,7 +24,6 @@ class Movie extends React.Component {
   render() {
     return (
       <div>
-        <Hero></Hero>
         <nav className="wrapper filters">
           <ul className="reset-list filters__list">
             <li>
