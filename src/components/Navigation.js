@@ -1,26 +1,26 @@
 import React from 'react';
-import { Link } from "react-router-dom";
+import { NavLink } from "react-router-dom";
 
 const Navigation = () => {
   return (
     <ul>
       <li>
-        <Link to="/">Logo</Link>
+        <NavLink to="/" activeClassName="is-active">Logo</NavLink>
       </li>
       <li>
-        <Link to="/movies/now-playing">Now Playing</Link>
+        <NavLink to="/movies/now-playing" activeClassName="is-active">Now Playing</NavLink>
       </li>
       <li>
-        <Link to="/movies/upcoming">Upcoming</Link>
+        <NavLink to="/movies/upcoming" activeClassName="is-active">Upcoming</NavLink>
       </li>
       <li>
-        <Link to="/movies/trending">Trending</Link>
+        <NavLink to="/movies/trending" activeClassName="is-active">Trending</NavLink>
       </li>
       <li>
-        <Link to="/tv">TV</Link>
+        <NavLink to="/tv" activeClassName="is-active">TV</NavLink>
       </li>
       <li>
-        <Link to="/movies">Movies</Link>
+        <NavLink to="/movies" activeClassName="is-active">Movies</NavLink>
       </li>
     </ul>
   );

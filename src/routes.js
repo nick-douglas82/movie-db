@@ -11,11 +11,11 @@ export default (
 	<Switch>
 		{/* <Redirect exact from="/" to="/movies/in-theatres" />
 		<Redirect exact from="/movies" to="/movies/in-theatres" /> */}
-		<Route path="/" component={Home} />
-		<Route path="/movies" component={Movies} />
-		<Route path="/movies/now-playing" component={Movies} />
-		<Route path="/movies/upcoming" component={Movies} />
-		<Route path="/movies/trending" component={Movies} />
-		<Route path="/tv" component={TV} />
+		<Route exact path="/" component={Home} />
+		<Route exact path="/movies" component={Movies} />
+		<Route exact path="/movies/now-playing" component={Movies} />
+		<Route exact path="/movies/upcoming" component={Movies} />
+		<Route exact path="/movies/trending" component={Movies} />
+		<Route exact path="/tv" component={TV} />
 	</Switch>
 );
