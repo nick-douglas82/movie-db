@@ -5,14 +5,23 @@ import { Link } from 'react-router-dom';
 import { API_IMAGE } from '../../config';
 
 class Card extends React.Component {
+  convertDate(date) {
+    const dateObj = new Date(date);
+    return dateObj.toLocaleDateString();
+  }
+
   render() {
     // const { genresAll, isComplete } = this.props;
     return (
       <div className="card">
         <img src={`${API_IMAGE.medium}/${this.props.poster}`} alt="" />
         <div className="card__content">
+          <div className="card__meta">
+            <span className="card__date">{this.convertDate(this.props.date)}</span>
+            <span className="card__media-type">Movie</span>
+          </div>
           <Link to={`/movie/${this.props.id}`} className="card__title">
-            <h3>{this.props.title}</h3>
+            {this.props.title}
           </Link>
           <div className="card__genres">
             {/* <ul className="reset-list card__genres-list">
@@ -21,9 +30,6 @@ class Card extends React.Component {
                 return ( (item.length) ? <li key={id}>{isComplete && item.shift().name},&nbsp;</li> : '' )
               })}
             </ul> */}
-          </div>
-          <div className="card__rating">
-            {this.props.rating}
           </div>
         </div>
       </div>
