@@ -3,7 +3,7 @@ import { connect } from 'react-redux';
 import { getMovies } from '../store/actions/movies';
 import Listing from '../components/movie/Listing';
 
-class Home extends React.Component {
+class NowPlaying extends React.Component {
   componentDidMount() {
     this.props.getMovies(this.props.location.pathname);
   }
@@ -24,11 +24,10 @@ class Home extends React.Component {
     }
   }
 }
-
 const mapStateToProps = (state, ownProps) => ({ nowPlaying: state.moviesReducer.now_playing });
 const mapDispatchToProps = { getMovies };
 
 export default connect(
   mapStateToProps,
   mapDispatchToProps
-)(Home);
+)(NowPlaying);

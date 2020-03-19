@@ -1,23 +1,23 @@
 import React from "react";
-import { connect } from 'react-redux';
-import MovieCard from '../movie/Card.js';
+import Item from '../movie/Card.js';
 
 class Listing extends React.Component {
   render() {
-    if (this.props.movies.data) {
+    if (this.props.movies) {
       return (
         <div className="wrapper">
           <div className="listing">
-          {this.props.movies.theatres.map((movie, index) => (
-            <MovieCard
-              title={movie.title}
-              id={movie.id}
-              genres={movie.genre_ids}
-              rating={movie.vote_average}
-              poster={movie.poster_path}
-              key={index}
-            ></MovieCard>
-          ))}
+            {Object.keys(this.props.movies).map((i) => (
+              <Item
+                title={this.props.movies[i].title}
+                date={this.props.movies[i].release_date}
+                id={this.props.movies[i].id}
+                genres={this.props.movies[i].genre_ids}
+                rating={this.props.movies[i].vote_average}
+                poster={this.props.movies[i].poster_path}
+                key={i}
+              ></Item>
+            ))}
           </div>
         </div>
       )
@@ -29,9 +29,5 @@ class Listing extends React.Component {
   }
 }
 
-const mapStateToProps = (state, ownProps) => ({ movies: state.moviesReducer.movies });
-
-export default connect(
-  mapStateToProps
-)(Listing);
+export default Listing
 

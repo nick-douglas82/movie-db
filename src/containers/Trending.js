@@ -1,19 +1,19 @@
 import React from 'react';
 import { connect } from 'react-redux';
-import { getMovies } from '../store/actions/movies';
+import { getTrending } from '../store/actions/movies';
 import Listing from '../components/movie/Listing';
 
-class Home extends React.Component {
+class Trending extends React.Component {
   componentDidMount() {
-    this.props.getMovies(this.props.location.pathname);
+    this.props.getTrending();
   }
 
   render() {
-    if (this.props.nowPlaying) {
+    if (this.props.upcoming) {
       return (
         <div className="wrapper">
           <div className="listing">
-            <Listing movies={this.props.nowPlaying}></Listing>
+            <Listing movies={this.props.upcoming}></Listing>
           </div>
         </div>
       );
@@ -24,11 +24,10 @@ class Home extends React.Component {
     }
   }
 }
-
-const mapStateToProps = (state, ownProps) => ({ nowPlaying: state.moviesReducer.now_playing });
-const mapDispatchToProps = { getMovies };
+const mapStateToProps = (state, ownProps) => ({ trending: state.moviesReducer.trending });
+const mapDispatchToProps = { getTrending };
 
 export default connect(
   mapStateToProps,
   mapDispatchToProps
-)(Home);
+)(Trending);
