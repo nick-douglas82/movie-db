@@ -9,11 +9,11 @@ class Trending extends React.Component {
   }
 
   render() {
-    if (this.props.upcoming) {
+    if (this.props.trending) {
       return (
         <div className="wrapper">
           <div className="listing">
-            <Listing movies={this.props.upcoming}></Listing>
+            <Listing movies={this.props.trending}></Listing>
           </div>
         </div>
       );

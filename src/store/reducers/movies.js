@@ -5,10 +5,9 @@ import {
 } from '../../constants/index';
 
 const initState = {
-  movies: {
     now_playing: null,
     upcoming: null,
-  }
+    trending: null
 }
 
 const reducer = ( state = initState, action ) => {
@@ -27,19 +26,17 @@ const reducer = ( state = initState, action ) => {
           ...upcoming
         }
       }
+
     case GET_NOW_PLAYING_REQUEST:
-      let now_playing = {}
-      for (let movie of action.payload) {
-        now_playing = {
-          ...now_playing,
-          [movie.id]: movie
-        }
-      }
+      let now_playing = action.payload.map((movie) => {
+        movie.type = 'movie';
+        return movie
+      });
       return {
         ...state,
-        now_playing: {
+        now_playing: [
           ...now_playing
-        }
+        ]
       }
 
     case GET_TRENDING_REQUEST:
@@ -52,24 +49,20 @@ const reducer = ( state = initState, action ) => {
       }
 
       let trendingTv = {}
-      for (let movie of action.payload.tv) {
+      for (let tv of action.payload.tv) {
         trendingTv = {
           ...trendingTv,
-          [movie.id]: movie
+          [tv.id]: tv
         }
       }
 
-      const newItem = { ...trendingMovies, ...trendingTv };
-
-      console.log(newItem)
-
-      // return {
-      //   ...state,
-      //   trending: {
-      //     ...trending
-      //   }
-      // }
-      return state;
+      return {
+        ...state,
+        trending: {
+          ...trendingMovies,
+          ...trendingTv
+        }
+      }
     default:
       return state;
   }

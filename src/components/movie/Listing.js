@@ -7,15 +7,15 @@ class Listing extends React.Component {
       return (
         <div className="wrapper">
           <div className="listing">
-            {Object.keys(this.props.movies).map((i) => (
+            {this.props.movies.map((movie, index) => (
               <Item
-                title={this.props.movies[i].title}
-                date={this.props.movies[i].release_date}
-                id={this.props.movies[i].id}
-                genres={this.props.movies[i].genre_ids}
-                rating={this.props.movies[i].vote_average}
-                poster={this.props.movies[i].poster_path}
-                key={i}
+                title={movie.title}
+                date={movie.release_date}
+                id={movie.id}
+                genres={movie.genre_ids}
+                rating={movie.vote_average}
+                poster={movie.poster_path}
+                key={index}
               ></Item>
             ))}
           </div>
