@@ -13,7 +13,7 @@ class Trending extends React.Component {
       return (
         <div className="wrapper">
           <div className="listing">
-            <Listing movies={this.props.trending}></Listing>
+            <Listing items={this.props.trending}></Listing>
           </div>
         </div>
       );

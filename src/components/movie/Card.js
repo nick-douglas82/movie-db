@@ -1,27 +1,26 @@
 import React from "react";
 import { Link } from 'react-router-dom';
-// import { connect } from 'react-redux';
 
-import { API_IMAGE } from '../../config';
+import { POSTER_PATH } from '../../config';
 
 class Card extends React.Component {
   convertDate(date) {
     const dateObj = new Date(date);
-    return dateObj.toLocaleDateString();
+    return dateObj.getFullYear();
   }
 
   render() {
-    // const { genresAll, isComplete } = this.props;
+    const { poster_path, release_date, first_air_date, media_type, type, id, title, name } = this.props.item;
     return (
       <div className="card">
-        <img src={`${API_IMAGE.medium}/${this.props.poster}`} alt="" />
+        <img src={`${POSTER_PATH}${poster_path}`} alt={title || name} />
         <div className="card__content">
           <div className="card__meta">
-            <span className="card__date">{this.convertDate(this.props.date)}</span>
-            <span className="card__media-type">Movie</span>
+            <span className="card__date">{this.convertDate(release_date || first_air_date)}</span>
+            <span className="card__media-type">{media_type || type}</span>
           </div>
-          <Link to={`/movie/${this.props.id}`} className="card__title">
-            {this.props.title}
+          <Link to={`/movie/${id}`} className="card__title">
+            {title || name}
           </Link>
           <div className="card__genres">
             {/* <ul className="reset-list card__genres-list">

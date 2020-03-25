@@ -1,10 +1,34 @@
 import React from 'react';
+import { connect } from 'react-redux';
+import { getTv } from '../store/actions/tv';
+import Listing from '../components/movie/Listing';
 
-const TV = () => {
-  return (
-    <div>
-      <h2>TV</h2>
-    </div>
-  );
+class TV extends React.Component {
+  componentDidMount() {
+    this.props.getTv();
+  }
+
+  render() {
+    if (this.props.tv) {
+      return (
+        <div className="wrapper">
+          <div className="listing">
+            <Listing items={this.props.tv}></Listing>
+          </div>
+        </div>
+      );
+    } else {
+      return (
+        <div>Nothing</div>
+      )
+    }
+  }
 }
-export default TV;
+
+const mapStateToProps = state => ({ tv: state.tvReducer.tv });
+const mapDispatchToProps = { getTv };
+
+export default connect(
+  mapStateToProps,
+  mapDispatchToProps
+)(TV);

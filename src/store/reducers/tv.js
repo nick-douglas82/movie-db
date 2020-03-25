@@ -7,17 +7,15 @@ const initState = {}
 const reducer = ( state = initState, action ) => {
   switch ( action.type ) {
     case GET_TV_REQUEST:
-      let _tv = {}
-      for (let tv of action.payload.results) {
-        _tv = {
-          ..._tv,
-          [tv.id]: tv
-        }
-      }
-
+      let tv = action.payload.map((tv) => {
+        tv.type = 'TV';
+        return tv
+      });
       return {
         ...state,
-        ..._tv
+        tv: [
+          ...tv
+        ]
       }
     default:
       return state;

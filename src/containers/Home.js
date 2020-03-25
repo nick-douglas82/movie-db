@@ -5,15 +5,15 @@ import Listing from '../components/movie/Listing';
 
 class Home extends React.Component {
   componentDidMount() {
-    this.props.getMovies(this.props.location.pathname);
+    this.props.getMovies();
   }
 
   render() {
-    if (this.props.nowPlaying) {
+    if (this.props.movies) {
       return (
         <div className="wrapper">
           <div className="listing">
-            <Listing movies={this.props.nowPlaying}></Listing>
+            <Listing items={this.props.movies}></Listing>
           </div>
         </div>
       );
@@ -25,7 +25,7 @@ class Home extends React.Component {
   }
 }
 
-const mapStateToProps = (state, ownProps) => ({ nowPlaying: state.moviesReducer.now_playing });
+const mapStateToProps = (state) => ({ movies: state.moviesReducer.movies });
 const mapDispatchToProps = { getMovies };
 
 export default connect(

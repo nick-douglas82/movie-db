@@ -1,19 +1,19 @@
 import React from 'react';
 import { connect } from 'react-redux';
-import { getNowPlaying } from '../store/actions/movies';
+import { getMovies } from '../store/actions/movies';
 import Listing from '../components/movie/Listing';
 
-class NowPlaying extends React.Component {
+class Movies extends React.Component {
   componentDidMount() {
-    this.props.getNowPlaying();
+    this.props.getMovies();
   }
 
   render() {
-    if (this.props.nowPlaying) {
+    if (this.props.movies) {
       return (
         <div className="wrapper">
           <div className="listing">
-            <Listing items={this.props.nowPlaying}></Listing>
+            <Listing items={this.props.movies}></Listing>
           </div>
         </div>
       );
@@ -24,10 +24,11 @@ class NowPlaying extends React.Component {
     }
   }
 }
-const mapStateToProps = (state, ownProps) => ({ nowPlaying: state.moviesReducer.now_playing });
-const mapDispatchToProps = { getNowPlaying };
+
+const mapStateToProps = state => ({ movies: state.moviesReducer.movies });
+const mapDispatchToProps = { getMovies };
 
 export default connect(
   mapStateToProps,
   mapDispatchToProps
-)(NowPlaying);
+)(Movies);

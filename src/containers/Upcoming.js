@@ -1,11 +1,11 @@
 import React from 'react';
 import { connect } from 'react-redux';
-import { getMovies } from '../store/actions/movies';
+import { getUpcomingMovies } from '../store/actions/movies';
 import Listing from '../components/movie/Listing';
 
 class Upcoming extends React.Component {
   componentDidMount() {
-    this.props.getMovies(this.props.location.pathname);
+    this.props.getUpcomingMovies();
   }
 
   render() {
@@ -13,7 +13,7 @@ class Upcoming extends React.Component {
       return (
         <div className="wrapper">
           <div className="listing">
-            <Listing movies={this.props.upcoming}></Listing>
+            <Listing items={this.props.upcoming}></Listing>
           </div>
         </div>
       );
@@ -24,8 +24,9 @@ class Upcoming extends React.Component {
     }
   }
 }
+
 const mapStateToProps = (state, ownProps) => ({ upcoming: state.moviesReducer.upcoming });
-const mapDispatchToProps = { getMovies };
+const mapDispatchToProps = { getUpcomingMovies };
 
 export default connect(
   mapStateToProps,

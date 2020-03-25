@@ -1,7 +1,8 @@
 import {
   GET_NOW_PLAYING_REQUEST,
   GET_UPCOMING_REQUEST,
-  GET_TRENDING_REQUEST
+  GET_TRENDING_REQUEST,
+  GET_MOVIES_REQUEST
 } from '../../constants/index';
 
 const initState = {
@@ -13,18 +14,15 @@ const initState = {
 const reducer = ( state = initState, action ) => {
   switch ( action.type ) {
     case GET_UPCOMING_REQUEST:
-      let upcoming = {}
-      for (let movie of action.payload) {
-        upcoming = {
-          ...upcoming,
-          [movie.id]: movie
-        }
-      }
+      let upcoming = action.payload.map((movie) => {
+        movie.type = 'movie';
+        return movie
+      });
       return {
         ...state,
-        upcoming: {
+        upcoming: [
           ...upcoming
-        }
+        ]
       }
 
     case GET_NOW_PLAYING_REQUEST:
@@ -39,29 +37,24 @@ const reducer = ( state = initState, action ) => {
         ]
       }
 
-    case GET_TRENDING_REQUEST:
-      let trendingMovies = {}
-      for (let movie of action.payload.movies) {
-        trendingMovies = {
-          ...trendingMovies,
-          [movie.id]: movie
-        }
-      }
-
-      let trendingTv = {}
-      for (let tv of action.payload.tv) {
-        trendingTv = {
-          ...trendingTv,
-          [tv.id]: tv
-        }
-      }
-
+    case GET_MOVIES_REQUEST:
+      let discoverMovies = action.payload.map((movie) => {
+        movie.type = 'movie';
+        return movie
+      });
       return {
         ...state,
-        trending: {
-          ...trendingMovies,
-          ...trendingTv
-        }
+        movies: [
+          ...discoverMovies
+        ]
+      }
+
+    case GET_TRENDING_REQUEST:
+      return {
+        ...state,
+        trending: [
+          ...action.payload.results
+        ]
       }
     default:
       return state;

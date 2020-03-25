@@ -1,55 +1,56 @@
-import { GET_NOW_PLAYING_REQUEST, GET_UPCOMING_REQUEST, GET_TRENDING_REQUEST } from '../../constants/index';
+import { GET_NOW_PLAYING_REQUEST, GET_UPCOMING_REQUEST, GET_TRENDING_REQUEST, GET_MOVIES_REQUEST } from '../../constants/index';
 
 import { API_ROOT, API_KEY } from '../../config';
-import { NOW_PLAYING, UPCOMING, POPULAR_MOVIE, POPULAR_TV, LANGUAGE } from '../../constants/api';
-import { getPageName } from '../../helpers/helpers';
+import { NOW_PLAYING, UPCOMING, MOVIES, LANGUAGE } from '../../constants/api';
 
+/**
+ * ACTION CREATORS
+ */
+
+/**
+ * Trending movies and TV
+ */
 export const getTrending = () => async dispatch => {
-  const movieTrendingUrl = `${API_ROOT}/${POPULAR_MOVIE}?api_key=${API_KEY}&language=${LANGUAGE}&page=1&region=GB`;
-  let response = await fetch(movieTrendingUrl);
-  let movieResponse = await response.json();
+  const trending = `${API_ROOT}/trending/all/day?api_key=${API_KEY}`;
+  const response = await fetch(trending);
+  const responseJson = await response.json();
 
-  const tvTrendingUrl = `${API_ROOT}/${POPULAR_TV}?api_key=${API_KEY}&language=${LANGUAGE}&page=1&region=GB`;
-  response = await fetch(tvTrendingUrl);
-  const tvResponse = await response.json();
-
-  const results = {
-    movies: movieResponse.results,
-    tv: tvResponse.results
-  }
-
-  dispatch(storeTrendingMoviesTv(results));
+  dispatch(storeTrendingMoviesTv(responseJson));
 }
 
-export const getMovies = (pageName) => async dispatch => {
-  let url = null;
-  let response = null;
-  let movieResponse = null;
-
-  switch (getPageName(pageName)) {
-    case 'now-playing':
-      url = `${API_ROOT}/${NOW_PLAYING}?api_key=${API_KEY}&language=${LANGUAGE}&page=1&region=GB`;
-      response = await fetch(url);
-      movieResponse = await response.json();
-      dispatch(storeNowPlayingMovies(movieResponse.results));
-      break;
-
-    case 'upcoming':
-      url = `${API_ROOT}/${UPCOMING}?api_key=${API_KEY}&language=${LANGUAGE}&page=1&region=GB`;
-      response = await fetch(url);
-      movieResponse = await response.json();
-      dispatch(storeUpcomingMovies(movieResponse.results));
-      break;
-
-    default:
-      url = `${API_ROOT}/${NOW_PLAYING}?api_key=${API_KEY}&language=${LANGUAGE}&page=1&region=GB`;
-      response = await fetch(url);
-      movieResponse = await response.json();
-      dispatch(storeNowPlayingMovies(movieResponse.results));
-      break;
-  }
+/**
+ * Upcoming movies
+ */
+export const getUpcomingMovies = () => async dispatch => {
+  const url = `${API_ROOT}/${UPCOMING}?api_key=${API_KEY}&language=${LANGUAGE}&page=1`;
+  const response = await fetch(url);
+  const movieResponse = await response.json();
+  dispatch(storeUpcomingMovies(movieResponse.results));
 }
 
+/**
+ * Now playing movies
+ */
+export const getNowPlaying = () => async dispatch => {
+  const url = `${API_ROOT}/${NOW_PLAYING}?api_key=${API_KEY}&language=${LANGUAGE}&page=1`;
+  const response = await fetch(url);
+  const movieResponse = await response.json();
+  dispatch(storeNowPlayingMovies(movieResponse.results));
+}
+
+/**
+ * Discover Movies
+ */
+export const getMovies = () => async dispatch => {
+  const url = `${API_ROOT}/${MOVIES}?api_key=${API_KEY}&language=${LANGUAGE}&sort_by=popularity.desc&include_adult=false&include_video=false&page=1`;
+  const response = await fetch(url);
+  const moviesResponse = await response.json();
+  dispatch(storeMovies(moviesResponse.results));
+}
+
+/**
+ * ACTIONS
+ */
 export const storeTrendingMoviesTv = (results) => {
   return {
     type: GET_TRENDING_REQUEST,
@@ -70,23 +71,10 @@ export const storeUpcomingMovies = (movies) => {
     payload: movies
   };
 };
-// export const storeTheatreMovies = (movies) => {
-//   return {
-//     type: GET_MOVIES_THEATRE_REQUEST,
-//     payload: movies
-//   };
-// };
 
-// export const storeComingSoonMovies = (movies) => {
-//   return {
-//     type: GET_MOVIES_COMINGSOON_REQUEST,
-//     payload: movies
-//   };
-// };
-
-// export const storeChartMovies = (movies) => {
-//   return {
-//     type: GET_MOVIES_CHART_REQUEST,
-//     payload: movies
-//   };
-// };
+export const storeMovies = (movies) => {
+  return {
+    type: GET_MOVIES_REQUEST,
+    payload: movies
+  };
+};

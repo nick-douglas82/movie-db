@@ -2,13 +2,11 @@ import React from 'react';
 import { Switch, Route } from "react-router-dom";
 
 import Home from './containers/Home';
-// import Movies from './containers/Movies';
 import TV from './containers/TV';
+import Movies from './containers/Movies';
 import NowPlaying from './containers/NowPlaying';
 import Upcoming from './containers/Upcoming';
 import Trending from './containers/Trending';
-// import Search from './containers/Search';
-// import Person from './containers/Person';
 
 export default (
 	<Switch>
@@ -20,5 +18,6 @@ export default (
 		<Route exact path="/movies/upcoming" component={Upcoming} />
 		<Route exact path="/movies/trending" component={Trending} />
 		<Route exact path="/tv" component={TV} />
+		<Route exact path="/movies" component={Movies} />
 	</Switch>
 );
