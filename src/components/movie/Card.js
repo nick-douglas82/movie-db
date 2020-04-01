@@ -1,6 +1,6 @@
 import React from "react";
 import { Link } from 'react-router-dom';
-
+import { connect } from 'react-redux';
 import { POSTER_PATH } from '../../config';
 
 class Card extends React.Component {
@@ -9,8 +9,15 @@ class Card extends React.Component {
     return dateObj.getFullYear();
   }
 
+  // componentDidUpdate(prevProps, prevState, snapshot) {
+  //   if (prevProps.movieGenres !== this.props.movieGenres) {
+  //       // Do whatever you want
+  //   }
+  // }
+
   render() {
-    const { poster_path, release_date, first_air_date, media_type, type, id, title, name } = this.props.item;
+    const { poster_path, release_date, first_air_date, media_type, type, id, title, name, genre_ids } = this.props.item;
+    const mediaType = media_type || type;
     return (
       <div className="card">
         <img src={`${POSTER_PATH}${poster_path}`} alt={title || name} />
@@ -23,12 +30,14 @@ class Card extends React.Component {
             {title || name}
           </Link>
           <div className="card__genres">
-            {/* <ul className="reset-list card__genres-list">
-              {isComplete && this.props.genres.map(id => {
-                const item = genresAll.filter(genre => genre.id === id);
-                return ( (item.length) ? <li key={id}>{isComplete && item.shift().name},&nbsp;</li> : '' )
+            <ul className="reset-list card__genres-list">
+              {genre_ids.map(id => {
+                const item = this.props.movieGenres.filter(genre => genre.id === id);
+                console.log(item)
+                return '1';
+                // return ( (item.length) ? <li key={id}>{item.shift().name},&nbsp;</li> : '' )
               })}
-            </ul> */}
+            </ul>
           </div>
         </div>
       </div>
@@ -43,8 +52,12 @@ class Card extends React.Component {
 // 	};
 // };
 
+const mapStateToProps = state => ({
+  movieGenres: state.genresReducer.genres.movie
+});
 
-// export default connect(
-//   mapStateToProps
-// )(Card);
-export default Card;
+
+export default connect(
+  mapStateToProps,
+  null
+)(Card);
